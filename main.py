@@ -35,7 +35,7 @@ def findTown(university):
 def writeUniNameToFile(university):
     with open("universities.txt", "a") as file:
         findTown(university)
-        file.write(university.get("Ad") + "," + university.get("Sehir") + "\n")
+        file.write(university.get("Ad") + " (" + university.get("Sehir") + ")"+ "\n")
 
 def getNextPage(secretWindow):
     print("Go to Next Page")
