@@ -2,6 +2,7 @@
 
 MY_LINENO=0
 SETTINGS_PY=test_settings.py
+UNIVERSITIES_TXT=universities.txt
 
 function addLastContent() {
     echo "]" >> ${SETTINGS_PY}
@@ -17,7 +18,7 @@ function addUniversities() {
     while read -r UNI; do
         #echo "${UNI}"
         addUniversity "${UNI}" >> ${SETTINGS_PY}
-    done < universities.txt
+    done < ${UNIVERSITIES_TXT}
 }
 
 function addHeadContent() {
