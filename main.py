@@ -1,6 +1,9 @@
 from selenium import webdriver
 import time
 
+# Ege Universitesi ve Istinye Universitesi crawler edilemiyor.
+#   6, 11 sayfa
+
 # Dikkat: Sitedeki id'ler hep degisiyor.
 Url = "https://yoksis.yok.gov.tr/websitesiuygulamalari/harita/"
 
@@ -21,6 +24,10 @@ Rows_TrClass = "z-listitem"
 RowContent_DivClass = "z-listcell-content"
 Next_AtagClass = "z-paging-next"
 
+def writeUniNameToFile(university):
+    with open("universities.txt", "a") as file:
+        file.write(university.get("Ad") + "\n")
+
 def getNextPage(secretWindow):
     print("Go to Next Page")
     nextLink = secretWindow.find_element_by_class_name(Next_AtagClass)
@@ -40,6 +47,7 @@ def getUniversityInShadowWindow(secretWindow):
         for index, content in enumerate(contents):
             University[switcher.get(index)] = content.text
         print(University)
+        writeUniNameToFile(University)
         AllUniversity.append(University)
 
 def main():
