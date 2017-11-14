@@ -24,9 +24,18 @@ Rows_TrClass = "z-listitem"
 RowContent_DivClass = "z-listcell-content"
 Next_AtagClass = "z-paging-next"
 
+def findTown(university):
+    ### Test Cases
+    # 123 BOLU
+    # Kocasinan-KAYSERI
+    # Atasehir ISTANBUL
+    # Merkez/AGRI
+    university["Sehir"] = university.get("Adres").split(" ")[-1].split("-")[-1].split("/")[-1].split(",")[-1]
+
 def writeUniNameToFile(university):
     with open("universities.txt", "a") as file:
-        file.write(university.get("Ad") + "\n")
+        findTown(university)
+        file.write(university.get("Ad") + "," + university.get("Sehir") + "\n")
 
 def getNextPage(secretWindow):
     print("Go to Next Page")
@@ -57,20 +66,21 @@ def main():
     driver.get(Url)
     time.sleep(5)
 
-    # Tum UniversiteListesi buttonuna tiklanildi. 
+    # Tum UniversiteListesi buttonuna tiklanildi.
     element = driver.find_element_by_class_name(TumUniversitesiListesi_ButtonClass)
     element.click()
     time.sleep(5)
 
     # Gizli pencere yakalandi.
     secretWindow = driver.find_element_by_class_name(ShadowWindow_DivClass)
-    
+
     getUniversityInShadowWindow(secretWindow)
     while "Okey" == getNextPage(secretWindow):
         getUniversityInShadowWindow(secretWindow)
 
     print(AllUniversity)
     a = input("Exit: ")
+    print(a)
     driver.quit()
 
 if __name__ == "__main__":
