@@ -1,0 +1,2 @@
+# ButunUniversiteListesiCrawler
+Turkiyedeki tum universiteler
