@@ -6,6 +6,7 @@ import time
 
 # Dikkat: Sitedeki id'ler hep degisiyor.
 Url = "https://yoksis.yok.gov.tr/websitesiuygulamalari/harita/"
+WaitSeconds = 8
 
 AllUniversity = []
 switcher = {
@@ -43,7 +44,7 @@ def getNextPage(secretWindow):
     status = nextLink.get_attribute("disabled")
     if status == None:
         nextLink.click()
-        time.sleep(5)
+        time.sleep(WaitSeconds)
         return "Okey"
     return status
 
@@ -64,12 +65,12 @@ def main():
     # Site acildi.
     driver = webdriver.Chrome()
     driver.get(Url)
-    time.sleep(5)
+    time.sleep(WaitSeconds)
 
     # Tum UniversiteListesi buttonuna tiklanildi.
     element = driver.find_element_by_class_name(TumUniversitesiListesi_ButtonClass)
     element.click()
-    time.sleep(5)
+    time.sleep(WaitSeconds)
 
     # Gizli pencere yakalandi.
     secretWindow = driver.find_element_by_class_name(ShadowWindow_DivClass)
