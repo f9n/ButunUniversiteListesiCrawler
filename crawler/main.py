@@ -55,7 +55,10 @@ def getUniversityInShadowWindow(secretWindow):
         University = {}
         contents = trElement.find_elements_by_class_name(RowContent_DivClass)
         for index, content in enumerate(contents):
-            University[switcher.get(index)] = content.text
+            if content.text == '':
+                University[switcher.get(index)] = content.get_attribute('innerHTML')
+            else:
+                University[switcher.get(index)] = content.text
         print(University)
         writeUniNameToFile(University)
         AllUniversity.append(University)
