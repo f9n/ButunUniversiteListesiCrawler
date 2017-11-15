@@ -1,9 +1,6 @@
 from selenium import webdriver
 import time
 
-# Ege Universitesi ve Istinye Universitesi crawler edilemiyor.
-#   6, 11 sayfa
-
 # Dikkat: Sitedeki id'ler hep degisiyor.
 Url = "https://yoksis.yok.gov.tr/websitesiuygulamalari/harita/"
 WaitSeconds = 8
@@ -31,7 +28,7 @@ def findTown(university):
     # Kocasinan-KAYSERI
     # Atasehir ISTANBUL
     # Merkez/AGRI
-    university["Sehir"] = university.get("Adres").split(" ")[-1].split("-")[-1].split("/")[-1].split(",")[-1]
+    university["Sehir"] = university.get("Adres").split(" ")[-1].split("-")[-1].split("/")[-1].split(",")[-1].upper()
 
 def writeUniNameToFile(university):
     with open("universities.txt", "a") as file:
