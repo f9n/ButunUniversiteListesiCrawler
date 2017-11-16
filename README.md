@@ -1,5 +1,5 @@
 # ButunUniversiteListesiCrawler
-Turkiyedeki tum universiteler
+Turkiyedeki tum universiteler, Data'nin cekildigi site: https://yoksis.yok.gov.tr/websitesiuygulamalari/harita/
 
 # Kurulum ve Calistirma
 
